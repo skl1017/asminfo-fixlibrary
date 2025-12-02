@@ -1,8 +1,28 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, status
+from fastapi.responses import JSONResponse
 from app.core import config
+from app.models.models import *
+from app.routes import category, device, component
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+app.include_router(category.router, prefix="/categories")
+app.include_router(device.router, prefix="/devices")
+app.include_router(component.router, prefix="/components")
+
+
+@app.exception_handler(Exception)
+async def global_exception_handler(_, exc: Exception):
+    print('lol')
+    return JSONResponse(
+        status_code=500,
+        content={"detail": str(exc)}
+    )
+
+# @app.post("/category", status_code=status.HTTP_201_CREATED)
+# async def create_category(category: CreateCategory):
+#     return {"message": category.name}
+
+# @app.post("/devices", status_code=status.HTTP_201_CREATED)
+# async def create_category(device: CreateDevice):
+#     return {"message": category.name}
