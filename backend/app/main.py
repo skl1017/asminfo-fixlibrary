@@ -2,13 +2,16 @@ from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse
 from app.core import config
 from app.models.models import *
-from app.routes import category, device, component
+from app.routes import category, device, component, diagnostic, issue, solution
 app = FastAPI()
 
 
 app.include_router(category.router, prefix="/categories")
 app.include_router(device.router, prefix="/devices")
 app.include_router(component.router, prefix="/components")
+app.include_router(diagnostic.router, prefix="/diagnostics")
+app.include_router(issue.router, prefix="/issues")
+app.include_router(solution.router, prefix="/solutions")
 
 
 @app.exception_handler(Exception)
