@@ -3,8 +3,18 @@ from fastapi.responses import JSONResponse
 from app.core import config
 from app.models.models import *
 from app.routes import category, device, component, diagnostic, issue, solution
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],          
+    allow_credentials=True,
+    allow_methods=["*"],      
+    allow_headers=["*"],     
+)
 
 app.include_router(category.router, prefix="/categories")
 app.include_router(device.router, prefix="/devices")

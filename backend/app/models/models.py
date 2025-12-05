@@ -1,6 +1,6 @@
 from typing import Optional
 from sqlmodel import SQLModel
-from app.orm.models import Component, Diagnostic, Device
+from app.orm.models import Component, Diagnostic, Device, Category
 
 class CategoryBase(SQLModel):
     name: str
@@ -21,6 +21,7 @@ class ReadDevice(CreateDevice):
     id: int
     components: list = []
     diagnostics: list = []
+    category: Category
 
 class CreateComponent(SQLModel):
     name: str
@@ -38,7 +39,6 @@ class CreateDiagnostic(SQLModel):
 class ReadDiagnostic(CreateDiagnostic):
     device: Optional[Device]
     issues: list = []
-
 
 class CreateIssue(SQLModel):
     diagnostic_id: int

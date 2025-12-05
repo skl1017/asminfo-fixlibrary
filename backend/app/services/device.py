@@ -39,7 +39,8 @@ class DeviceService():
                     .where(Device.id == device_id)
                     .options(
                         selectinload(Device.components),
-                        selectinload(Device.diagnostics)))
+                        selectinload(Device.diagnostics),
+                        selectinload(Device.category)))
                 device_record = session.exec(statement).first()
                 if device_record is None:
                     raise HTTPException(status_code=404, detail="Device not found")
