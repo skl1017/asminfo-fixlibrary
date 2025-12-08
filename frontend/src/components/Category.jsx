@@ -14,7 +14,6 @@ export default function Category() {
     fetch(`${API_BASE_URL}/categories/${category_id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCategory(data);
         setLoading(false);
       })

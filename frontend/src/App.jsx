@@ -4,7 +4,9 @@ import Category from "./components/Category";
 import Device from "./components/Device";
 import Diagnostic from "./components/Diagnostic";
 import Breadcrumbs from "./components/Breadcrumbs";
+import Issue from "./components/Issue";
 import "./App.css";
+import Solution from "./components/Solution";
 
 function App() {
   return (
@@ -17,10 +19,11 @@ function App() {
         </nav>
       </header>
       <main className="m-4">
+        <Breadcrumbs />
         <Routes>
           <Route path="/categories" element={<CategoriesList />} />
           <Route
-            path="/categories/:category_id/devices"
+            path="/categories/:category_id/"
             element={<Category />}
           />
           <Route
@@ -30,6 +33,14 @@ function App() {
           <Route
             path="/categories/:category_id/devices/:device_id/diagnostics/:diagnostic_id"
             element={<Diagnostic />}
+          />
+          <Route
+          path="/categories/:category_id/devices/:device_id/diagnostics/:diagnostic_id/issues/:issue_id"
+          element={<Issue/>}
+          />
+          <Route
+          path="/categories/:category_id/devices/:device_id/diagnostics/:diagnostic_id/issues/:issue_id/solutions/:solution_id"
+          element={<Solution/>}
           />
         </Routes>
       </main>

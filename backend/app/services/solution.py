@@ -17,3 +17,15 @@ class SolutionService():
                 return solution
         except Exception:
             raise
+    
+    @staticmethod
+    def get_solution(solution_id: int):
+        try:
+            with Session(engine) as session:
+                statement = (select(Solution).where(Solution.id == solution_id))
+                solution_record = session.exec(statement).first()
+                if solution_record is None:
+                    raise HTTPException(status_code=404, detail="Solution not found")
+                return solution_record      
+        except Exception:
+            raise

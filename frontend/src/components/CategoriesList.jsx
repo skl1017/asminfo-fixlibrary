@@ -24,7 +24,7 @@ export default function CategoriesList() {
     <ul className="flex flex-col gap-3 w-50">
       {categories.map((cat) => (
         <Link
-          to={`http://localhost:5173/categories/${cat.id}/devices`}
+          to={`http://localhost:5173/categories/${cat.id}/`}
           key={cat.id}
         >
           <p className="hover:underline">{cat.name}</p>

@@ -12,7 +12,6 @@ export default function Device() {
     fetch(`${API_BASE_URL}/devices/${device_id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setDevice(data);
         setLoading(false);
       })
