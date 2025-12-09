@@ -4,6 +4,13 @@ from app.services.device import  DeviceService
 
 router = APIRouter()
 
+@router.get("/search", status_code=status.HTTP_200_OK)
+def search_devices(name: str= None, vendor_id: int = None, category_id: int = None):
+    try:
+        return DeviceService.search_devices(name, vendor_id, category_id)
+    except Exception:
+        raise
+
 @router.get("/{device_id}", status_code=status.HTTP_200_OK, response_model=ReadDevice)
 def get_device(device_id: int):
     try:
@@ -25,4 +32,5 @@ def link_device_component(link_data: CreateDeviceComponentLink):
         return DeviceService.link_device_component(link_data)
     except Exception:
         raise
+
     

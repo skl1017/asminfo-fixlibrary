@@ -48,6 +48,29 @@ class DeviceService():
         except Exception:
             raise
 
-
+    @staticmethod
+    def search_devices(name: str= None, vendor_id: int = None, category_id: int = None):
+        conditions = []
+        if vendor_id is not None:
+          conditions.append(Device.vendor_id == vendor_id)
+        if category_id is not None:
+            conditions.append(Device.category_id == category_id)
+        if name:
+            conditions.append(Device.name.ilike(f"%{name}%"))
+        try:
+            with Session(engine) as session:
+                statement = (
+                    select(Device)
+                    .where(*conditions)
+                    .options(
+                        selectinload(Device.diagnostics),
+                        selectinload(Device.category)))
+                device_record = session.exec(statement).all()
+                if device_record is None:
+                    raise HTTPException(status_code=404, detail="Device not found")
+                return device_record      
+        except Exception:
+          raise
+        
 
     

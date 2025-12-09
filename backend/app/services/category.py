@@ -38,3 +38,19 @@ class CategoryService:
                 return category_record      
         except Exception:
             raise
+    
+    def search_categories(name: str = None):
+        conditions = []
+        if name is not None:
+            conditions.append(Category.name.ilike(f"%{name}%"))
+        try:
+            with Session(engine) as session:
+                statement = (
+                    select(Category)
+                    .where(*conditions))
+                categories_record = session.exec(statement).all()
+                if categories_record is None:
+                    raise HTTPException(status_code=404, detail="Device not found")
+                return categories_record      
+        except Exception:
+          raise

@@ -7,11 +7,15 @@ import Breadcrumbs from "./components/Breadcrumbs";
 import Issue from "./components/Issue";
 import "./App.css";
 import Solution from "./components/Solution";
+import Search from "./components/search/Search";
 
 function App() {
   return (
     <>
-      <header className="p-4 bg-black text-white mb-8 py-8">
+      <header className="p-4 bg-black text-white mb-8 py-8 flex gap-12 items-center">
+        <Link to="/">
+          <h1 className="text-bold text-xl">ASMINFO</h1>
+        </Link>
         <nav className="space-x-4">
           <Link className="hover:underline" to="/categories">
             Catégories
@@ -21,11 +25,9 @@ function App() {
       <main className="m-4">
         <Breadcrumbs />
         <Routes>
+          <Route path="/" element={<Search />} />
           <Route path="/categories" element={<CategoriesList />} />
-          <Route
-            path="/categories/:category_id/"
-            element={<Category />}
-          />
+          <Route path="/categories/:category_id/" element={<Category />} />
           <Route
             path="/categories/:category_id/devices/:device_id"
             element={<Device />}
@@ -35,12 +37,12 @@ function App() {
             element={<Diagnostic />}
           />
           <Route
-          path="/categories/:category_id/devices/:device_id/diagnostics/:diagnostic_id/issues/:issue_id"
-          element={<Issue/>}
+            path="/categories/:category_id/devices/:device_id/diagnostics/:diagnostic_id/issues/:issue_id"
+            element={<Issue />}
           />
           <Route
-          path="/categories/:category_id/devices/:device_id/diagnostics/:diagnostic_id/issues/:issue_id/solutions/:solution_id"
-          element={<Solution/>}
+            path="/categories/:category_id/devices/:device_id/diagnostics/:diagnostic_id/issues/:issue_id/solutions/:solution_id"
+            element={<Solution />}
           />
         </Routes>
       </main>

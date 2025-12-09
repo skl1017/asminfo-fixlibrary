@@ -16,6 +16,7 @@ class CreateDevice(SQLModel):
     name: str
     serial_code: Optional[str] = None
     category_id: int
+    vendor_id: Optional[int] = None
 
 class ReadDevice(CreateDevice):
     id: int
@@ -55,3 +56,6 @@ class CreateSolution(SQLModel):
     title: str
     description: str
     issue_id: int
+
+class CreateVendor(SQLModel):
+    name: str

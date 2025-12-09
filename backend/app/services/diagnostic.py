@@ -1,5 +1,5 @@
 from app.models.models import CreateDiagnostic
-from app.orm.models import Diagnostic, Issue
+from app.orm.models import Diagnostic
 from sqlmodel import Session, select
 from sqlalchemy.orm import selectinload
 from app.core.config import engine

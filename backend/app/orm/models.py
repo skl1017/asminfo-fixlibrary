@@ -13,6 +13,12 @@ class Category(SQLModel, table=True):
     name: str = Field(index=True, max_length=255)
     devices: List["Device"] = Relationship(back_populates="category")
 
+class Vendor(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(index=True, max_length=255)
+    devices: List["Device"] = Relationship( back_populates="vendor")
+
+
 
 class Component(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -28,6 +34,8 @@ class Device(SQLModel, table=True):
     name: str = Field(max_length=255)
     category_id: int = Field(foreign_key="category.id")
     category: Optional[Category] = Relationship(back_populates="devices")
+    vendor_id: Optional[int] = Field(foreign_key="vendor.id")
+    vendor: Optional[Vendor] = Relationship(back_populates="devices")
     components: List[Component] = Relationship(link_model=DeviceComponentLink, back_populates="devices")
     diagnostics: List["Diagnostic"] = Relationship(back_populates="device")
 

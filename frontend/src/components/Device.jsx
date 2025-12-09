@@ -24,25 +24,38 @@ export default function Device() {
   if (loading) return <p>Chargement...</p>;
 
   return (
-    <div className="flex flex-col gap-6">
-      <h2 className="text-3xl font-bold">{device.name}</h2>
-      <h2 className="text-2xl">{device.serial_code}</h2>
-
-      <ul className="flex flex-col gap-3 w-50">
-        {device.diagnostics.map((diagnostic) => {
-          return (
-            <li className="p-2 border rounded-lg" key={diagnostic.id}>
-              <Link
-                to={`${CLIENT_BASE_URL}/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic.id}`}
-              >
-                <div className="flex flex-col">
-                  <p className="font-bold">{diagnostic.title}</p>
-                </div>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+    <div>
+      <h1 className="text-3xl font-bold mb-8">Appareil</h1>
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-3">
+          <h2 className="text-2xl font-bold">{device.name}</h2>
+          <div className="flex items-center gap-2">
+            <p>Numéro de série: </p>
+            <p className="font-bold">{device.serial_code}</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
+          <h3 className="font-bold">Diagnostics:</h3>
+          <ul className="flex flex-col gap-3 w-50 ml-2">
+            {device.diagnostics.map((diagnostic) => {
+              return (
+                <li
+                  className="p-2 border rounded-lg bg-black text-white"
+                  key={diagnostic.id}
+                >
+                  <Link
+                    to={`${CLIENT_BASE_URL}/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic.id}`}
+                  >
+                    <div className="flex flex-col">
+                      <p className="font-bold">{diagnostic.title}</p>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

@@ -25,17 +25,21 @@ export default function Issue() {
 
   return (
     <div>
+      <h1 className="text-3xl font-bold mb-6">Problème</h1>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl font-bold">{issue.title}</h2>
           <p>{issue.description}</p>
         </div>
-        <div className="flex flex-col gap-3">
-          <p>Problèmes possibles:</p>
+        <div className="flex flex-col gap-5">
+          <p className="font-bold">Solutions possibles:</p>
           <ul className="flex flex-col gap-3 w-50">
             {issue.solutions.map((solution) => {
               return (
-                <li className="p-2 border rounded-lg" key={issue.id}>
+                <li
+                  className="p-2 border rounded-lg bg-black text-white ml-3"
+                  key={issue.id}
+                >
                   <Link
                     to={`/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic_id}/issues/${issue_id}/solutions/${solution.id}`}
                   >

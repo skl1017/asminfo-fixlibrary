@@ -26,12 +26,15 @@ export default function Category() {
   if (loading) return <p>Chargement...</p>;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <h2 className="text-3xl font-bold">{category.name}</h2>
-      <ul className="flex flex-col gap-3 w-50">
+      <ul className="flex flex-col gap-3 w-50 ml-2">
         {category.devices.map((device) => {
           return (
-            <li className="p-2 border rounded-lg" key={device.id}>
+            <li
+              className="p-2 border rounded-lg bg-black text-white"
+              key={device.id}
+            >
               <Link to={`/categories/${category_id}/devices/${device.id}`}>
                 <div className="flex flex-col">
                   <p className="font-bold">{device.name}</p>

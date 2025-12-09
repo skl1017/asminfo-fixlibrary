@@ -4,7 +4,8 @@ import { API_BASE_URL } from "../constants/constants";
 import { Link } from "react-router-dom";
 
 export default function Solution() {
-  const { category_id, device_id, diagnostic_id, issue_id, solution_id } = useParams();
+  const { category_id, device_id, diagnostic_id, issue_id, solution_id } =
+    useParams();
   const [solution, setSolution] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,6 +26,8 @@ export default function Solution() {
 
   return (
     <div>
+      <h1 className="text-3xl font-bold mb-6">Solution</h1>
+
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl font-bold">{solution.title}</h2>

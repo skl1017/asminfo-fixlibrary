@@ -2,7 +2,7 @@ from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse
 from app.core import config
 from app.models.models import *
-from app.routes import category, device, component, diagnostic, issue, solution
+from app.routes import category, device, component, diagnostic, issue, solution, vendor
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -22,6 +22,8 @@ app.include_router(component.router, prefix="/components")
 app.include_router(diagnostic.router, prefix="/diagnostics")
 app.include_router(issue.router, prefix="/issues")
 app.include_router(solution.router, prefix="/solutions")
+app.include_router(vendor.router, prefix="/vendors")
+
 
 
 @app.exception_handler(Exception)

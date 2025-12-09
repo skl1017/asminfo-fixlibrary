@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { API_BASE_URL } from "../constants/constants";
 import { Link } from "react-router-dom";
-import Issue from "./Issue";
 
 export default function Diagnostic() {
   const { category_id, device_id, diagnostic_id } = useParams();
@@ -26,17 +25,21 @@ export default function Diagnostic() {
 
   return (
     <div>
+      <h1 className="text-3xl font-bold mb-6">Diagnostic</h1>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <h2 className="text-3xl font-bold">{diagnostic.title}</h2>
+          <h2 className="text-2xl font-bold">{diagnostic.title}</h2>
           <p>{diagnostic.description}</p>
         </div>
-        <div className="flex flex-col gap-3">
-          <p>Problèmes possibles:</p>
-          <ul className="flex flex-col gap-3 w-50">
+        <div className="flex flex-col gap-5">
+          <h3 className="font-bold">Problèmes possibles:</h3>
+          <ul className="flex flex-col gap-3 w-50 ml-3">
             {diagnostic.issues.map((issue) => {
               return (
-                <li className="p-2 border rounded-lg" key={issue.id}>
+                <li
+                  className="bg-black text-white p-2 border rounded-lg"
+                  key={issue.id}
+                >
                   <Link
                     to={`/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic_id}/issues/${issue.id}`}
                   >
