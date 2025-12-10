@@ -47,8 +47,6 @@ export default function Breadcrumbs() {
     load();
   }, [pathname]);
 
-  console.log(results);
-
   return (
     <ol className="text-black flex gap-2 items-center mb-10">
       {results.map((res, index) => {

@@ -8,15 +8,19 @@ import Issue from "./components/Issue";
 import "./App.css";
 import Solution from "./components/Solution";
 import Search from "./components/search/Search";
+import CreateDevice from "./components/create/CreateDevice";
 
 function App() {
   return (
     <>
-      <header className="p-4 bg-black text-white mb-8 py-8 flex gap-12 items-center">
+      <header className="p-4 bg-black text-white mb-8 py-8 flex gap-16 items-center">
         <Link to="/">
           <h1 className="text-bold text-xl">ASMINFO</h1>
         </Link>
-        <nav className="space-x-4">
+        <nav className="space-x-8">
+          <Link className="hover:underline" to="/search">
+            Rechercher un appareil
+          </Link>
           <Link className="hover:underline" to="/categories">
             Catégories
           </Link>
@@ -26,6 +30,9 @@ function App() {
         <Breadcrumbs />
         <Routes>
           <Route path="/" element={<Search />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/create/device" element={<CreateDevice />} />
+
           <Route path="/categories" element={<CategoriesList />} />
           <Route path="/categories/:category_id/" element={<Category />} />
           <Route

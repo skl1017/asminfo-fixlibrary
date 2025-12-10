@@ -21,12 +21,15 @@ export default function CategoriesList() {
   if (loading) return <></>;
 
   return (
-    <ul className="flex flex-col gap-3 w-50">
-      {categories.map((cat) => (
-        <Link to={`http://localhost:5173/categories/${cat.id}/`} key={cat.id}>
-          <p className="hover:underline">{cat.name}</p>
-        </Link>
-      ))}
-    </ul>
+    <div className="flex flex-col gap-10">
+      <h2 className="text-3xl font-bold">Catégories</h2>
+      <ul className="flex flex-col gap-3 w-50">
+        {categories.map((cat) => (
+          <Link to={`http://localhost:5173/categories/${cat.id}/`} key={cat.id}>
+            <p className="hover:underline">{cat.name}</p>
+          </Link>
+        ))}
+      </ul>
+    </div>
   );
 }
