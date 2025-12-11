@@ -21,6 +21,10 @@ function App() {
           <Link className="hover:underline" to="/search">
             Rechercher un appareil
           </Link>
+          <Link className="hover:underline" to="/devices/create">
+            Ajouter un appareil
+          </Link>
+
           <Link className="hover:underline" to="/categories">
             Catégories
           </Link>
@@ -31,7 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Search />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/create/device" element={<CreateDevice />} />
+          <Route path="/devices/create" element={<CreateDevice />} />
 
           <Route path="/categories" element={<CategoriesList />} />
           <Route path="/categories/:category_id/" element={<Category />} />

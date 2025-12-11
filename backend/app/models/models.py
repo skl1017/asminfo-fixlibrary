@@ -29,7 +29,6 @@ class CreateComponent(SQLModel):
     serial_code: str
 
 class CreateDeviceComponentLink(SQLModel):
-    device_id : int
     component_id: int
 
 class CreateDiagnostic(SQLModel):

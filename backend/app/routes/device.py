@@ -26,11 +26,12 @@ def create_device(create_device:CreateDevice):
     except Exception:
         raise
 
-@router.post("/link-component", status_code=status.HTTP_201_CREATED)
-def link_device_component(link_data: CreateDeviceComponentLink):
+@router.post("/{device_id}/link-component", status_code=status.HTTP_201_CREATED)
+def link_device_component(device_id:int, link_data: CreateDeviceComponentLink):
     try:
-        return DeviceService.link_device_component(link_data)
+        return DeviceService.link_device_component(device_id, link_data)
     except Exception:
         raise
+
 
     

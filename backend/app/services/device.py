@@ -16,9 +16,9 @@ class DeviceService():
             return db_device
         
     @staticmethod
-    def link_device_component(link_data:  CreateDeviceComponentLink):
+    def link_device_component(device_id: int, link_data:  CreateDeviceComponentLink):
         with Session(engine) as session:
-            device = session.get(Device, link_data.device_id)
+            device = session.get(Device, device_id)
             if not device:
                 raise HTTPException(404, "Device not found")
             component = session.get(Component, link_data.component_id)
