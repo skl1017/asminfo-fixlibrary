@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { API_BASE_URL } from "../constants/constants";
 import { Link } from "react-router-dom";
+import List from "./List";
 
 export default function Issue() {
   const { category_id, device_id, diagnostic_id, issue_id } = useParams();
@@ -31,27 +32,12 @@ export default function Issue() {
           <h2 className="text-3xl font-bold">{issue.title}</h2>
           <p>{issue.description}</p>
         </div>
-        <div className="flex flex-col gap-5">
-          <p className="font-bold">Solutions possibles:</p>
-          <ul className="flex flex-col gap-3 w-50">
-            {issue.solutions.map((solution) => {
-              return (
-                <li
-                  className="p-2 border rounded-lg bg-black text-white ml-3"
-                  key={issue.id}
-                >
-                  <Link
-                    to={`/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic_id}/issues/${issue_id}/solutions/${solution.id}`}
-                  >
-                    <div className="flex flex-col">
-                      <p></p>
-                      <p className="font-bold">{solution.title}</p>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+        <div className="flex flex-col gap-5 w-60">
+          <h2 className="font-bold">Solutions possibles:</h2>
+          <List
+            elementList={issue.solutions}
+            endpoint={`/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic_id}/issues/${issue_id}/solutions`}
+          />
         </div>
       </div>
     </div>

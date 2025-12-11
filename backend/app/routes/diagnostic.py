@@ -11,7 +11,7 @@ def create_diagnostic(create_diagnostic: CreateDiagnostic):
     except Exception:
         raise
 
-@router.get("/{diagnostic_id}", status_code=status.HTTP_201_CREATED, response_model=ReadDiagnostic)
+@router.get("/{diagnostic_id}", status_code=status.HTTP_200_OK, response_model=ReadDiagnostic)
 def get_diagnostic(diagnostic_id: int):
     try:
         return DiagnosticService.get_diagnostic(diagnostic_id)

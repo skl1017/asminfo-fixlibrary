@@ -33,5 +33,11 @@ def link_device_component(device_id:int, link_data: CreateDeviceComponentLink):
     except Exception:
         raise
 
+@router.get("/{device_id}/available-components", status_code=status.HTTP_200_OK)
+def get_available_components(device_id:int):
+    try:
+        return DeviceService.get_available_components(device_id)
+    except Exception:
+        raise
 
     

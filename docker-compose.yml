@@ -4,9 +4,9 @@ services:
     image: postgres:15-alpine
     container_name: asminfo-postgres
     environment:
-      POSTGRES_DB: ${POSTGRES_NAME:-asminfo}
-      POSTGRES_USER: ${POSTGRES_USER:-asminfo_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-asminfo_password}
+      POSTGRES_DB: asminfo
+      POSTGRES_USER: asminfo_user
+      POSTGRES_PASSWORD: asminfo_password
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
@@ -16,6 +16,24 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   container_name: asminfo-backend
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   environment:
+  #     POSTGRES_HOST: postgres
+  #     DATABASE_URL: postgresql+psycopg2://asminfo_user:asminfo_password@postgres:5432/asminfo
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - ./backend:/app
+  #   command: fastapi run
+
 
 volumes:
   postgres_data:

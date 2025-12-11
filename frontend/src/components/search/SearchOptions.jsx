@@ -14,7 +14,6 @@ export default function SearchOptions({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (type !== "select" || !optionEndpoint) return;
         const result = await fetch(API_BASE_URL + optionEndpoint);
         const data = await result.json();
         setOptions(
@@ -23,13 +22,13 @@ export default function SearchOptions({
             label: element.name,
           })),
         );
-        console.log(data);
       } catch (e) {
         setOptions([]);
       }
     };
-    fetchData();
-  }, [optionEndpoint]);
+    if (type != "select" || !optionEndpoint) return;
+    fetchData()
+  }, []);
 
   if (type == "select") {
     return (

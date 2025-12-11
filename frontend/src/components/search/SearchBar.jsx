@@ -31,7 +31,6 @@ export default function SearchBar({ setSearchResults }) {
         throw err;
       }
     };
-    console.log(searchParameters);
     fetchData();
   }, [searchParameters]);
 

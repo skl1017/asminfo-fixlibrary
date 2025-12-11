@@ -19,7 +19,6 @@ class Vendor(SQLModel, table=True):
     devices: List["Device"] = Relationship( back_populates="vendor")
 
 
-
 class Component(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     serial_code: Optional[str] = Field(default=None, index=True, max_length=255)

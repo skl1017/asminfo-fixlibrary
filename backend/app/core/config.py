@@ -5,13 +5,14 @@ from app.orm.models import *
 
 load_dotenv()
 
-db_name = getenv("POSTGRES_NAME", "asminfo")
-db_user = getenv("POSTGRES_USER", "asminfo_user")
-db_pass = getenv("POSTGRES_PASSWORD", "asminfo_password")
-db_port = getenv("POSTGRES_PORT", "5432")
+db_host = getenv("POSTGRES_HOST", "localhost")
+db_url = getenv(
+    "DATABASE_URL",
+    f"postgresql+psycopg2://asminfo_user:asminfo_password@{db_host}:5432/asminfo"
+)
 
-database_url = f"postgresql+psycopg2://{db_user}:{db_pass}@localhost:{db_port}/{db_name}"
-engine = create_engine(database_url, echo=True)
+
+engine = create_engine(db_url, echo=True)
 SQLModel.metadata.create_all(engine)
 
 all_tables = SQLModel.metadata.tables

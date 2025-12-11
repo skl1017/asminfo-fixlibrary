@@ -47,6 +47,24 @@ class DeviceService():
                 return device_record      
         except Exception:
             raise
+    @staticmethod
+    def get_available_components(device_id:int):
+        try:
+            with Session(engine) as session:
+                statement = (
+                    select(Device)
+                    .where(Device.id == device_id)
+                    .options(
+                        selectinload(Device.components)))
+                device_record = session.exec(statement).first()
+                if device_record is None:
+                    raise HTTPException(status_code=404, detail="Device not found")
+                linked_ids = [c.id for c in device_record.components]
+                available_components = session.exec(
+                select(Component).where(~Component.id.in_(linked_ids))).all()
+                return available_components      
+        except Exception:
+            raise
 
     @staticmethod
     def search_devices(name: str= None, vendor_id: int = None, category_id: int = None):

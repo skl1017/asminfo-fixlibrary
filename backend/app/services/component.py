@@ -16,3 +16,11 @@ class ComponentService():
                 return component
         except Exception:
             raise
+    def get_component_list():
+        try:
+            with Session(engine) as session:
+                statement = select(Component)
+                components = session.exec(statement).all()
+                return components     
+        except Exception:
+            raise

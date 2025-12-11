@@ -40,9 +40,6 @@ export default function CreateDevice() {
   const [formData, setFormData] = useState(
     Object.fromEntries(form.map((field) => [field.key, field.value])),
   );
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   return (
     <div className="flex flex-col gap-10">
