@@ -27,7 +27,7 @@ export default function SearchOptions({
       }
     };
     if (type != "select" || !optionEndpoint) return;
-    fetchData()
+    fetchData();
   }, []);
 
   if (type == "select") {

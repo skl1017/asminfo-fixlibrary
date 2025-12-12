@@ -42,7 +42,7 @@ class ReadDiagnostic(CreateDiagnostic):
 
 class CreateIssue(SQLModel):
     diagnostic_id: int
-    component_id: int
+    component_id: Optional[int] = None
     title: str
     description: str
 

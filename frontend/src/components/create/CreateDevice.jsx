@@ -19,7 +19,7 @@ export default function CreateDevice() {
       value: null,
       type: "text",
       optionEndpoint: "",
-      placeholder: "Numéro de série",
+      placeholder: "Numéro de Référence",
     },
     {
       key: "category_id",

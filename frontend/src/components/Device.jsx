@@ -8,7 +8,6 @@ import List from "./List";
 
 export default function Device() {
   const navigate = useNavigate();
-  const location = useLocation();
   const { category_id, device_id } = useParams();
   const diagnosticForm = [
     {
@@ -32,9 +31,9 @@ export default function Device() {
       value: null,
       type: "select",
       optionEndpoint: `/devices/${device_id}/available-components`,
-      placeholder: "Composant à ajouter à l'appareil"
-    }
-  ]
+      placeholder: "Composant à ajouter à l'appareil",
+    },
+  ];
   const [device, setDevice] = useState([]);
   const [loading, setLoading] = useState(true);
   const [enableForm, setEnableForm] = useState(0);
@@ -68,69 +67,75 @@ export default function Device() {
         <div className="flex flex-col gap-2">
           <h2 className="text-2xl font-bold">{device.name}</h2>
           <div className="flex items-center gap-2">
-            <p>Numéro de série: </p>
+            <p>Numéro de Référence: </p>
             <p className="font-bold">{device.serial_code}</p>
           </div>
         </div>
 
-
-          
-      
         <div className="flex gap-6">
           <div className="flex flex-col gap-2">
             <button
               className="p-3 border rounded-lg bg-black text-white font-bold p-1 size-max hover:cursor-pointer "
               onClick={() => {
-                if (enableForm == 1) setEnableForm(0)
-                  else setEnableForm(1)
+                if (enableForm == 1) setEnableForm(0);
+                else setEnableForm(1);
               }}
-              >+ Ajouter un composant</button>
+            >
+              + Ajouter un composant
+            </button>
             <button
               className="p-3 border rounded-lg bg-black text-white font-bold p-1 size-max hover:cursor-pointer "
               onClick={() => {
-                if (enableForm == 2) setEnableForm(0)
-                  else setEnableForm(2)
+                if (enableForm == 2) setEnableForm(0);
+                else setEnableForm(2);
               }}
             >
               + Créer un nouveau diagnostic
             </button>
           </div>
 
-            
-            {enableForm == 1 && (
-                <div className="flex flex-col gap-4 border border-gray-400 p-4">
-                  <p className="font-bold mb-4">Ajouter un composant existant à l'appareil</p>
-                  <Form form={componentForm} formData={componentFormData} setFormData={setComponentFormData} />
-                  <FormValidateButton
-                    url={`${API_BASE_URL}/devices/${device_id}/link-component`}
-                    payload={{ ...componentFormData, device_id: device_id }}
-                    buttonTitle={"Créer"}
-                    callback={(response) => {
-                      window.location.reload();
-                    }}
-                  />
-                </div>
+          {enableForm == 1 && (
+            <div className="flex flex-col gap-4 border border-gray-400 p-4">
+              <p className="font-bold mb-4">
+                Ajouter un composant existant à l'appareil
+              </p>
+              <Form
+                form={componentForm}
+                formData={componentFormData}
+                setFormData={setComponentFormData}
+              />
+              <FormValidateButton
+                url={`${API_BASE_URL}/devices/${device_id}/link-component`}
+                payload={{ ...componentFormData, device_id: device_id }}
+                buttonTitle={"Créer"}
+                callback={(response) => {
+                  window.location.reload();
+                }}
+              />
+            </div>
           )}
 
-            {enableForm == 2 && (
-                <div className="flex flex-col gap-4 border border-gray-400 p-4">
-                  <p className="font-bold mb-4">Nouveau diagnostic</p>
-                  <Form form={diagnosticForm} formData={diagnosticFormData} setFormData={setDiagnosticFormData} />
-                  <FormValidateButton
-                    url={`${API_BASE_URL}/diagnostics`}
-                    payload={{ ...diagnosticFormData, device_id: device_id }}
-                    buttonTitle={"Créer"}
-                    callback={(response) => {
-                      navigate(
-                        `/categories/${category_id}/devices/${device_id}/diagnostics/${response.id}`,
-                      );
-                    }}
-                  />
-                </div>
+          {enableForm == 2 && (
+            <div className="flex flex-col gap-4 border border-gray-400 p-4">
+              <p className="font-bold mb-4">Nouveau diagnostic</p>
+              <Form
+                form={diagnosticForm}
+                formData={diagnosticFormData}
+                setFormData={setDiagnosticFormData}
+              />
+              <FormValidateButton
+                url={`${API_BASE_URL}/diagnostics`}
+                payload={{ ...diagnosticFormData, device_id: device_id }}
+                buttonTitle={"Créer"}
+                callback={(response) => {
+                  navigate(
+                    `/categories/${category_id}/devices/${device_id}/diagnostics/${response.id}`,
+                  );
+                }}
+              />
+            </div>
           )}
-
-
-          </div>
+        </div>
 
         <div className="flex gap-32">
           <div className="flex flex-col gap-4">
