@@ -26,7 +26,7 @@ export default function Breadcrumbs() {
   }
 
   const breadCrumbs = [];
-  var url = "http://localhost:5173/";
+  var url = "/";
   for (let i = 0; i < parsedPath.length; i += 2) {
     const endpoint = `${parsedPath[i]}/${parsedPath[i + 1]}/`;
     url += endpoint;
