@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { API_BASE_URL, CLIENT_BASE_URL } from "../constants/constants";
+import { API_BASE_URL } from "../constants/constants";
 import Form from "./create/Form";
 import FormValidateButton from "./create/FormValidateButton";
 import List from "./List";
