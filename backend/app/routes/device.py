@@ -4,7 +4,7 @@ from app.services.device import  DeviceService
 
 router = APIRouter()
 
-@router.get("/search", status_code=status.HTTP_200_OK)
+@router.get("/search", status_code=status.HTTP_200_OK, response_model=list)
 def search_devices(name: str= None, vendor_id: int = None, category_id: int = None):
     try:
         return DeviceService.search_devices(name, vendor_id, category_id)

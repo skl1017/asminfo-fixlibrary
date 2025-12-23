@@ -24,7 +24,7 @@ export default function Diagnostic() {
     },
   ];
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [issueFormData, setIssueFormData] = useState(
     Object.fromEntries(issueForm.map((field) => [field.key, field.value])),
   );
@@ -61,7 +61,7 @@ export default function Diagnostic() {
           <button
             className="p-3 border rounded-lg bg-black text-white font-bold p-1 size-max hover:cursor-pointer "
             onClick={() => {
-              setEnableForm(!enableForm)
+              setEnableForm(!enableForm);
             }}
           >
             + Créer un nouveau problème
@@ -69,9 +69,7 @@ export default function Diagnostic() {
           <button />
           {enableForm && (
             <div className="flex flex-col gap-4 border border-gray-400 p-4">
-              <p className="font-bold mb-4">
-                Créer un nouveau problème
-              </p>
+              <p className="font-bold mb-4">Créer un nouveau problème</p>
               <Form
                 form={issueForm}
                 formData={issueFormData}
@@ -82,7 +80,9 @@ export default function Diagnostic() {
                 payload={{ ...issueFormData, diagnostic_id: diagnostic_id }}
                 buttonTitle={"Créer"}
                 callback={(response) => {
-                  navigate(`/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic_id}/issues/${response.id}`)
+                  navigate(
+                    `/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic_id}/issues/${response.id}`,
+                  );
                 }}
               />
             </div>

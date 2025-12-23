@@ -4,6 +4,8 @@ backend/venv
 .env
 /frontend/node_modules/
 
+categories.txt
+fabricants.txt
 # React Router
 /frontend/.react-router/
 /frontend/build/

@@ -31,15 +31,6 @@ class CreateComponent(SQLModel):
 class CreateDeviceComponentLink(SQLModel):
     component_id: int
 
-class CreateDiagnostic(SQLModel):
-    device_id: int
-    title: str
-    description: str
-
-class ReadDiagnostic(CreateDiagnostic):
-    device: Optional[Device]
-    issues: list = []
-
 class CreateIssue(SQLModel):
     diagnostic_id: int
     component_id: Optional[int] = None
@@ -50,6 +41,16 @@ class ReadIssue(CreateIssue):
     component: Optional[Component]
     diagnostic: Optional[Diagnostic]
     solutions: list = []
+
+class CreateDiagnostic(SQLModel):
+    device_id: int
+    title: str
+    description: str
+
+class ReadDiagnostic(CreateDiagnostic):
+    id: int
+    device: Optional[Device] = None
+    issues: list = []
 
 class CreateSolution(SQLModel):
     title: str

@@ -6,8 +6,7 @@ import Form from "./create/Form";
 import FormValidateButton from "./create/FormValidateButton";
 
 export default function Issue() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const solutionForm = [
     {
       key: "title",
@@ -56,38 +55,38 @@ export default function Issue() {
           <p>{issue.description}</p>
         </div>
 
-      <div className="flex gap-6">
-                <button
-                  className="p-3 border rounded-lg bg-black text-white font-bold p-1 size-max hover:cursor-pointer "
-                  onClick={() => {
-                    setEnableForm(!enableForm)
-                  }}
-                >
-                  + Créer une nouvelle solution
-                </button>
-                <button />
+        <div className="flex gap-6">
+          <button
+            className="p-3 border rounded-lg bg-black text-white font-bold p-1 size-max hover:cursor-pointer "
+            onClick={() => {
+              setEnableForm(!enableForm);
+            }}
+          >
+            + Créer une nouvelle solution
+          </button>
+          <button />
 
-                {enableForm && (
-                  <div className="flex flex-col gap-4 border border-gray-400 p-4">
-                    <p className="font-bold mb-4">
-                      Créer une nouvelle solution
-                    </p>
-                    <Form
-                      form={solutionForm}
-                      formData={solutionFormData}
-                      setFormData={setSolutionFormData}
-                    />
-                    <FormValidateButton
-                      url={`${API_BASE_URL}/solutions`}
-                      payload={{ ...solutionFormData, issue_id: issue_id }}
-                      buttonTitle={"Créer"}
-                      callback={(response) => {
-                        navigate(`/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic_id}/issues/${issue_id}/solutions/${response.id}`)
-                      }}
-                    />
-                  </div>
-                )}
-              </div>
+          {enableForm && (
+            <div className="flex flex-col gap-4 border border-gray-400 p-4">
+              <p className="font-bold mb-4">Créer une nouvelle solution</p>
+              <Form
+                form={solutionForm}
+                formData={solutionFormData}
+                setFormData={setSolutionFormData}
+              />
+              <FormValidateButton
+                url={`${API_BASE_URL}/solutions`}
+                payload={{ ...solutionFormData, issue_id: issue_id }}
+                buttonTitle={"Créer"}
+                callback={(response) => {
+                  navigate(
+                    `/categories/${category_id}/devices/${device_id}/diagnostics/${diagnostic_id}/issues/${issue_id}/solutions/${response.id}`,
+                  );
+                }}
+              />
+            </div>
+          )}
+        </div>
 
         <div className="flex flex-col gap-5 w-60">
           <h2 className="font-bold">Solutions possibles:</h2>

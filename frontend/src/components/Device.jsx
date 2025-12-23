@@ -107,7 +107,7 @@ export default function Device() {
               <FormValidateButton
                 url={`${API_BASE_URL}/devices/${device_id}/link-component`}
                 payload={{ ...componentFormData, device_id: device_id }}
-                buttonTitle={"Créer"}
+                buttonTitle={"Ajouter"}
                 callback={(response) => {
                   window.location.reload();
                 }}

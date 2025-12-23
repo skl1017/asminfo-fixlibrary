@@ -7,8 +7,9 @@ import Breadcrumbs from "./components/Breadcrumbs";
 import Issue from "./components/Issue";
 import "./App.css";
 import Solution from "./components/Solution";
-import Search from "./components/search/Search";
+import SearchDevice from "./components/search/SearchDevice";
 import CreateDevice from "./components/create/CreateDevice";
+import SearchDiagnostic from "./components/search/SearchDiagnostic";
 
 function App() {
   return (
@@ -18,9 +19,13 @@ function App() {
           <h1 className="text-bold text-xl">ASMINFO</h1>
         </Link>
         <nav className="space-x-8">
-          <Link className="hover:underline" to="/search">
+          <Link className="hover:underline" to="/devices/search">
             Rechercher un appareil
           </Link>
+          <Link className="hover:underline" to="/diagnostics/search">
+            Rechercher un diagnostic
+          </Link>
+
           <Link className="hover:underline" to="/devices/create">
             Ajouter un appareil
           </Link>
@@ -33,8 +38,9 @@ function App() {
       <main className="m-4">
         <Breadcrumbs />
         <Routes>
-          <Route path="/" element={<Search />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/" element={<SearchDevice />} />
+          <Route path="/devices/search" element={<SearchDevice />} />
+          <Route path="/diagnostics/search" element={<SearchDiagnostic />} />
           <Route path="/devices/create" element={<CreateDevice />} />
 
           <Route path="/categories" element={<CategoriesList />} />

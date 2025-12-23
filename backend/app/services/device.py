@@ -81,6 +81,7 @@ class DeviceService():
                     select(Device)
                     .where(*conditions)
                     .options(
+                        selectinload(Device.components),
                         selectinload(Device.diagnostics),
                         selectinload(Device.category)))
                 device_record = session.exec(statement).all()

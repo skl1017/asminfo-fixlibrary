@@ -1,14 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
-import { API_BASE_URL } from "../../constants/constants";
 
-export default function Search() {
+export default function SearchDevice() {
   const [searchResults, setSearchResults] = useState([]);
+
+  const form = [
+    {
+      key: "name",
+      value: null,
+      type: "text",
+      optionEndpoint: "",
+      placeholder: "Nom de l'appareil",
+    },
+    {
+      key: "category_id",
+      value: null,
+      type: "select",
+      optionEndpoint: "/categories",
+      placeholder: "Assigner à une catégorie",
+    },
+    {
+      key: "vendor_id",
+      value: null,
+      type: "select",
+      optionEndpoint: "/vendors",
+      placeholder: "Assigner à un fabricant",
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-10">
       <h2 className="text-3xl font-bold">Rechercher un appareil</h2>
-      <SearchBar setSearchResults={setSearchResults} />
+
+      <SearchBar
+        form={form}
+        setSearchResults={setSearchResults}
+        endpoint={"/devices/search"}
+      />
 
       <div className="flex flex-col gap-4">
         <h2 className="text-xl font-bold">Resultats</h2>

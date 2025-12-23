@@ -38,7 +38,9 @@ export default function Category() {
               <Link to={`/categories/${category_id}/devices/${device.id}`}>
                 <div className="flex flex-col">
                   <p className="font-bold">{device.name}</p>
-                  <p className="text-sm pl">N° Reference : {device.serial_code}</p>
+                  <p className="text-sm pl">
+                    N° Reference : {device.serial_code}
+                  </p>
                 </div>
               </Link>
             </li>

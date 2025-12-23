@@ -17,33 +17,33 @@ services:
       timeout: 5s
       retries: 5
 
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: asminfo-backend
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      POSTGRES_HOST: postgres
-      DATABASE_URL: postgresql+psycopg2://asminfo_user:asminfo_password@postgres:5432/asminfo
-    ports:
-      - "8000:8000"
-    command: fastapi run
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   container_name: asminfo-backend
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   environment:
+  #     POSTGRES_HOST: postgres
+  #     DATABASE_URL: postgresql+psycopg2://asminfo_user:asminfo_password@postgres:5432/asminfo
+  #   ports:
+  #     - "8000:8000"
+  #   command: fastapi run
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: asminfo-frontend
-    depends_on:
-      - backend
-    environment:
-      VITE_BACKEND_IP_ADDRESS: ${VITE_BACKEND_IP_ADDRESS}
-    ports:
-      - "5173:5173"
-    command: npm run dev -- --host
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: asminfo-frontend
+  #   depends_on:
+  #     - backend
+  #   environment:
+  #     VITE_BACKEND_IP_ADDRESS: ${VITE_BACKEND_IP_ADDRESS}
+  #   ports:
+  #     - "5173:5173"
+  #   command: npm run dev -- --host
 
 
 
